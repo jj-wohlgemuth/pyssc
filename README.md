@@ -1,2 +1,2 @@
-# ssc
-Sennheiser Sound Control Protocol Client Implementation for Python
+# Python Sennheiser Sound Control Protocol (SSC) Client Implementation 
+
