@@ -16,11 +16,12 @@ class Ssc_device():
     """
     def __init__(self,
                  name: str,
-                 ip: str = None):
+                 ip: str = None,
+                 port: int = 45):
         self.name = name
         self.ip = ip
         self.socket = None
-        self.port
+        self.port = port
 
     def connect(self, port=45):
         self.port = port
@@ -28,7 +29,7 @@ class Ssc_device():
         self.socket.setblocking(True)
 
     def disconnect(self):
-        self.socket = socket.create_connection((self.ip))
+        self.socket.close()
 
     def send_ssc(self,
                  command: str,
