@@ -11,12 +11,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 
 setuptools.setup(name='pyssc',
-                 version_config={
-                    "template": "{tag}",
-                    "dev_template": "{tag}.post{ccount}+git.{sha}",
-                    "dirty_template": "{tag}.post{ccount}+git.{sha}.dirty",
-                    "starting_version": "0.0.0",
-                 },
+                 version="0.0.1.dev4",
                  setup_requires=['setuptools-git-versioning'],
                  description='Python Client fo Sennheiser Sound Control Protocol',
                  long_description=long_description,
