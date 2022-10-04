@@ -23,9 +23,9 @@ class Ssc_device():
         self.socket = None
         self.port = port
 
-    def connect(self, port=45):
+    def connect(self, interface: str = "%eth0", port: int = 45):
         self.port = port
-        self.socket = socket.create_connection((self.ip, port))
+        self.socket = socket.create_connection((self.ip + interface, port))
         self.socket.setblocking(True)
 
     def disconnect(self):
@@ -36,7 +36,7 @@ class Ssc_device():
                  interface: str = "%eth0",
                  buffersize: int = 64,
                  wait_time_seconds: float = .001,
-                 port = 45):
+                 port: int = 45):
         self.port = port
         request_raw = f'{command}\r\n'.encode('utf-8')
         try:
