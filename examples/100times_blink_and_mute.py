@@ -11,7 +11,7 @@ else:
         found_setup.to_json('setup.json')
     else:
         raise Exception("No SSC device setup found.")
-found_setup.connect_all()
+found_setup.connect_all(interface='')
 for _ in range(100):
     found_setup.send_all('{"audio":{"out":{"mute":true}}}', interface='')
     found_setup.send_all('{"audio":{"out":{"mute":false}}}', interface='')

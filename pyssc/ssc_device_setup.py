@@ -21,13 +21,22 @@ class Ssc_device_setup():
     def remove_device(self, ssc_device):
         self.ssc_devices.remove(ssc_device)
 
-    def connect_all(self):
+    def connect_all(self, interface: str = "%eth0", port: int = 45):
         for ssc_device in self.ssc_devices:
-            ssc_device.connect()
+            ssc_device.connect(interface=interface, port=port)
 
-    def send_all(self, command, interface):
+    def send_all(self,
+                 command: str,
+                 interface: str = "%eth0",
+                 buffersize: int = 64,
+                 wait_time_seconds: float = .001,
+                 port: int = 45):
         for ssc_device in self.ssc_devices:
-            ssc_device.send_ssc(command, interface=interface)
+            ssc_device.send_ssc(command,
+                                interface,
+                                buffersize,
+                                wait_time_seconds,
+                                port)
 
     def disconnect_all(self):
         for ssc_device in self.ssc_devices:
