@@ -23,7 +23,7 @@ def __on_service_state_change(zeroconf: Zeroconf,
     ssc_device_setup = Ssc_device_setup(found_kh_devices)
 
 
-def scan(scan_time_seconds=1):
+def scan(scan_time_seconds=1) -> Ssc_device_setup:
     zeroconf = Zeroconf(ip_version=IPVersion.V6Only)
     services = list(ZeroconfServiceTypes.find(zc=zeroconf))
     ServiceBrowser(zeroconf, services, handlers=[__on_service_state_change])
