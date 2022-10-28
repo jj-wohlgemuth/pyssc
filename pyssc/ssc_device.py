@@ -1,6 +1,7 @@
 import socket
 import time
 import logging
+from .Ssc_transaction import Ssc_transaction
 
 
 class Ssc_device():
@@ -47,4 +48,7 @@ class Ssc_device():
             self.socket.sendto(request_raw, (self.ip + interface, self.port))
         time.sleep(wait_time_seconds)
         data = self.socket.recv(buffersize)
-        return {'TX': command, 'RX': data.decode('utf-8')}
+        ssc_transaction = Ssc_transaction()
+        ssc_transaction.TX = command
+        ssc_transaction.RX = data.decode('utf-8')
+        return ssc_transaction

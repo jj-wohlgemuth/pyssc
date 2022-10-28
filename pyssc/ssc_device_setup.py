@@ -1,5 +1,5 @@
 import json
-from .ssc_device import Ssc_device
+from .Ssc_device import Ssc_device
 
 
 class Ssc_device_setup():
