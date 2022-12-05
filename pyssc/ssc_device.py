@@ -44,7 +44,7 @@ class Ssc_device():
             self.socket.sendto(request_raw, (self.ip + interface, self.port))
         except Exception as e:
             logging.warning('socket connection closed. Reopening. ' + str(e))
-            self.connect()
+            self.connect(interface=interface, port=port)
             self.socket.sendto(request_raw, (self.ip + interface, self.port))
         time.sleep(wait_time_seconds)
         data = self.socket.recv(buffersize)
