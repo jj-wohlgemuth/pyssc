@@ -20,5 +20,5 @@ for buf_size in [2**n for n in range(3, 9)]:
                                    buffersize=buf_size,
                                    wait_time_seconds=.001*buf_size)
     print('buffersize: ' + str(buf_size))
-    print('length of received string: ' + str(len(ssc_transaction['RX'])))
+    print('length of received string: ' + str(len(ssc_transaction.RX)))
     print('wait_time_seconds: ' + str(round(.001*buf_size, 3)))

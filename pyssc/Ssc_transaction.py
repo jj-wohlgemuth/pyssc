@@ -1,4 +1,4 @@
-class Ssc_device_setup():
+class Ssc_transaction():
 
     def __init__(self):
         self.TX: str
