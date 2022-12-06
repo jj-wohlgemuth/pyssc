@@ -29,13 +29,11 @@ class Ssc_device_setup():
                  command: str,
                  interface: str = "%eth0",
                  buffersize: int = 64,
-                 wait_time_seconds: float = .001,
                  port: int = 45):
         for ssc_device in self.ssc_devices:
             ssc_device.send_ssc(command,
                                 interface,
                                 buffersize,
-                                wait_time_seconds,
                                 port)
 
     def disconnect_all(self):
