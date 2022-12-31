@@ -23,15 +23,29 @@ class Ssc_device():
         self.ip = ip
         self.socket = None
         self.port = port
+        self.connected = False
+        self.error = ""
 
-    def connect(self, interface: str = "%eth0", port: int = 45):
+    def connect(self, interface: str = "%eth0", port: int = 45, timeout: int=4):
         self.port = port
-        self.socket = socket.create_connection((self.ip + interface, port))
+        self.socket = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
         self.socket.setblocking(True)
-        self.socket.settimeout(1)
+        self.socket.settimeout(timeout)
+        sock_addr = socket.getaddrinfo(self.ip + interface, port, socket.AF_INET6, proto=6)[0][4]
+        try:
+          self.socket.connect(sock_addr)
+        except socket.error as err:
+          self.connected =  False
+          self.error = err
+          return False
+
+        self.connected = True
+        return True
+
 
     def disconnect(self):
         self.socket.close()
+        self.connected = False
 
     def send_ssc(self,
                  command: str,
@@ -39,14 +53,24 @@ class Ssc_device():
                  buffersize: int = 512,
                  port: int = 45):
         self.port = port
+        if not self.connected:
+            return False
+
         request_raw = f'{command}\r\n'.encode('utf-8')
         try:
             self.socket.sendto(request_raw, (self.ip + interface, self.port))
         except Exception as e:
-            logging.warning('socket connection closed. Reopening. ' + str(e))
-            self.connect(interface=interface, port=port)
-            self.socket.sendto(request_raw, (self.ip + interface, self.port))
-        data = self.socket.recv(buffersize)
+            self.connected = False
+            self.error = str(e)
+            return False
+
+        try:
+            data = self.socket.recv(buffersize)
+        except Exception as e:
+            self.connected = False
+            self.error = str(e)
+            return False
+
         ssc_transaction = Ssc_transaction()
         ssc_transaction.TX = command
         ssc_transaction.RX = data.decode('utf-8')
