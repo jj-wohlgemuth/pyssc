@@ -41,7 +41,8 @@ Here's an example setup JSON:
 Once you have defined your setups as a JSON you don't need to scan anymore. Simply import your setup at the beginning of your session.
 
 ```py
-found_setup = ssc.Ssc_device_setup().from_json('setup.json')
+found_setup = ssc.Ssc_device_setup()
+found_setup.from_json('setup.json')
 ```
 
 Now you can send and receive SSC either to and from a single device
@@ -54,6 +55,12 @@ or the whole setup.
 
 ```py
 found_setup.send_all('{"audio":{"out":{"mute":true}}}')
+```
+
+Please note that Unix systems require you to specify the network interface. The default value here is "%eth0". On Windows you can specify an empty String as the Value for "interface".
+
+```py
+ssc_transaction = device_1.send_ssc('{"audio":{"out":{"mute":true}}}', interface = "")
 ```
 
 To find out which commands work for your specific SSC Device please refer to the [SSC Documentation](https://assets.sennheiser.com/global-downloads/file/9541/TI_1093_v2.0_Sennheiser_Sound_Control_Protocol_ew_D1_EN.pdf).
