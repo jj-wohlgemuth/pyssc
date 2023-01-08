@@ -21,9 +21,9 @@ class Ssc_device_setup():
     def remove_device(self, ssc_device: Ssc_device):
         self.ssc_devices.remove(ssc_device)
 
-    def connect_all(self, interface: str = "%eth0", port: int = 45):
+    def connect_all(self, interface: str = "%eth0", port: int = 45, timeout: int = 4):
         for ssc_device in self.ssc_devices:
-            ssc_device.connect(interface=interface, port=port)
+            ssc_device.connect(interface=interface, port=port, timeout=timeout)
 
     def send_all(self,
                  command: str,
