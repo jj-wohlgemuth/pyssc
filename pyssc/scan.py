@@ -1,8 +1,8 @@
 import time
 from zeroconf import IPVersion, ServiceBrowser,\
                      ServiceStateChange, Zeroconf, ZeroconfServiceTypes
-from .Ssc_device import Ssc_device
-from .Ssc_device_setup import Ssc_device_setup
+from .ssc_device import Ssc_device
+from .ssc_device_setup import Ssc_device_setup
 
 found_kh_devices = []
 ssc_device_setup = None

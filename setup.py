@@ -11,14 +11,14 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 
 setuptools.setup(name='pyssc',
-                 version="0.0.2.dev7",
+                 version="0.0.3",
                  setup_requires=['setuptools-git-versioning'],
                  description='Python Client fo Sennheiser Sound Control Protocol',
                  long_description=long_description,
                  long_description_content_type='text/markdown',
-                 url='https://github.com/jj-wohlgemuth/pyssc',
-                 author='JJ Wohlgemuth',
-                 author_email='jj.wohlgemuth@gmail.com',
+                 url='https://github.com/schwinn/pyssc',
+                 author='JJ Wohlgemuth, Thorsten Schwinn',
+                 author_email='',
                  license='MIT',
                  packages=setuptools.find_packages(),
                  package_data={'pyssc': []},

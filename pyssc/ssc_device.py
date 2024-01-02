@@ -1,7 +1,7 @@
 import socket
 import time
 import logging
-from .Ssc_transaction import Ssc_transaction
+from .ssc_transaction import Ssc_transaction
 
 
 class Ssc_device():
